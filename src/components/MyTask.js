@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import axiosInstance from '../axios'
 
 function MyTask() {
   const [tasks, setTasks] = useState([
@@ -21,7 +22,7 @@ function MyTask() {
   useEffect(() => {
     async function getData() {
       try {
-        const myTasks = await axios.get(
+        const myTasks = await axiosInstance.get(
           'http://127.0.0.1:8000/api/v1/task/pic/6'
         )
         const taskList = myTasks.data
