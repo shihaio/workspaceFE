@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import axiosInstance from '../axios'
 import { useState } from 'react'
 import axios from 'axios'
+import jwt_decode from 'jwt-decode'
 
 function LogIn() {
   const navigate = useNavigate()
@@ -25,8 +26,11 @@ function LogIn() {
       .then((res) => {
         localStorage.setItem('access_token', res.data.access)
         localStorage.setItem('refresh_token', res.data.refresh)
-        localStorage.setItem('UserId', res.data.id)
-        console.log(res.data)
+        const decoded = jwt_decode(res.data.access)
+        const { email, user_id, profileURL } = decoded
+        localStorage.setItem('UserId', user_id)
+        localStorage.setItem('email', email)
+        localStorage.setItem('profileURL', profileURL)
         axiosInstance.defaults.headers['Authorization'] =
           'JWT ' + localStorage.getItem('access_token')
         setTimeout(navigate('/'), 500, -1)

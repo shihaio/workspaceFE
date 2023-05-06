@@ -6,14 +6,17 @@ function LogOut() {
   const navigate = useNavigate()
 
   useEffect(() => {
+    const refreshToken = localStorage.getItem('refresh_token')
+    console.log(refreshToken)
     const response = axiosInstance.post('api/v1/auth/logout/blacklist/', {
       refresh_token: localStorage.getItem('refresh_token'),
     })
     localStorage.removeItem('access_token')
     localStorage.removeItem('refresh_token')
     axiosInstance.defaults.headers['Authorization'] = null
+    // setTimeout(navigate('/login'), 3000, -1)
     navigate('/login')
-  })
+  }, [])
   return <div>LOGOUT</div>
 }
 
