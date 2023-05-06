@@ -17,13 +17,16 @@ function LogIn() {
     event.preventDefault()
     console.log(formData)
 
-    axiosInstance.post('api/v1/auth/token/', {
+    axiosInstance
+      .post('api/v1/auth/token/', {
         email: formData.email,
         password: formData.password,
       })
       .then((res) => {
         localStorage.setItem('access_token', res.data.access)
         localStorage.setItem('refresh_token', res.data.refresh)
+        localStorage.setItem('UserId', res.data.id)
+        console.log(res.data)
         axiosInstance.defaults.headers['Authorization'] =
           'JWT ' + localStorage.getItem('access_token')
         setTimeout(navigate('/'), 500, -1)
