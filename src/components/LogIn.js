@@ -16,21 +16,20 @@ function LogIn() {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log(formData)
-
     axiosInstance
       .post('api/v1/auth/token/', {
         email: formData.email,
         password: formData.password,
       })
       .then((res) => {
-        localStorage.setItem('access_token', res.data.access)
-        localStorage.setItem('refresh_token', res.data.refresh)
+        localStorage.setItem('accessToken', res.data.access)
+        localStorage.setItem('refreshToken', res.data.refresh)
         const decoded = jwt_decode(res.data.access)
-        const { email, user_id, profileURL } = decoded
-        localStorage.setItem('UserId', user_id)
+        const { email, user_id, profileURL, role } = decoded
+        localStorage.setItem('userId', user_id)
         localStorage.setItem('email', email)
         localStorage.setItem('profileURL', profileURL)
+        localStorage.setItem('role', role)
         axiosInstance.defaults.headers['Authorization'] =
           'JWT ' + localStorage.getItem('access_token')
         setTimeout(navigate('/'), 500, -1)

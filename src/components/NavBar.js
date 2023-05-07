@@ -1,16 +1,20 @@
 import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
-import { useEffect, useState } from 'react'
-import LogOut from './LogOut'
+import { useEffect, useState, useContext } from 'react'
+import useAuth from '../hooks/useAuth'
+import AuthContext from '../context/AuthProvider'
 
 function NavigationBar() {
-  const [isAuth, setIsAuth] = useState(false)
-  useEffect(() => {
-    if (localStorage.getItem('access_token') !== null) {
-      setIsAuth(true)
-    }
-  }, [isAuth])
+  const { auth } = useContext(AuthContext)
+  console.log(auth)
+  const isAuth = auth?.userId
+  // const [isAuth, setIsAuth] = useState(false)
+  // useEffect(() => {
+  //   if (localStorage.getItem('access_token') !== null) {
+  //     setIsAuth(true)
+  //   }
+  // }, [isAuth])
   return (
     <Navbar
       collapseOnSelect
@@ -25,6 +29,7 @@ function NavigationBar() {
         <Navbar.Collapse id='responsive-navbar-nav'>
           <Nav className='me-auto'>
             <Nav.Link href='/dashboard'>DASHBOARD</Nav.Link>
+            <Nav.Link href='/task-i-receive'>Task I Receive</Nav.Link>
           </Nav>
           <Nav>
             {isAuth ? (
