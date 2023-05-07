@@ -9,6 +9,7 @@ import LogOut from './components/LogOut'
 import TaskIReceive from './components/TaskIReceive'
 import TaskICreate from './components/TaskICreate'
 import UpdateTask from './components/UpdateTask'
+import CompletedTasks from './components/CompletedTasks'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='/login' element={<LogIn />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/logout' element={<LogOut />} />
+        <Route path='/task-completed' element={<CompletedTasks />} />
         <Route path='/task/update/:taskId' element={<UpdateTask />} />
       </Routes>
     </div>

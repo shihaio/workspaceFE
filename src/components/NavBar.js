@@ -30,6 +30,7 @@ function NavigationBar() {
           <Nav className='me-auto'>
             <Nav.Link href='/dashboard'>DASHBOARD</Nav.Link>
             <Nav.Link href='/task-i-receive'>Task I Receive</Nav.Link>
+            <Nav.Link href='/task-completed'>Completed Tasks </Nav.Link>
           </Nav>
           <Nav>
             {isAuth ? (
