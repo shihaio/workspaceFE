@@ -8,6 +8,7 @@ import NavigationBar from './components/NavBar'
 import LogOut from './components/LogOut'
 import TaskIReceive from './components/TaskIReceive'
 import TaskICreate from './components/TaskICreate'
+import UpdateTask from './components/UpdateTask'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/login' element={<LogIn />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/logout' element={<LogOut />} />
+        <Route path='/task/update/:taskId' element={<UpdateTask />} />
       </Routes>
     </div>
   )

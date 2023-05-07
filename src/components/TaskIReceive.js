@@ -27,11 +27,13 @@ function TaskIReceive() {
       return (
         <TaskCard
           key={task.id}
+          
           task_name={task?.task_name}
           status={task?.status}
           description={task?.description}
           created_by_id={task?.created_by_id}
-          tasked_to_id={task?.tasked_to_id}
+          // taskImgURL={taskImgURL}
+          // tasked_to_id={task?.tasked_to_id}
         />
       )
     })

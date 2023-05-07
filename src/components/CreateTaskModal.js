@@ -32,16 +32,13 @@ function CreateTaskModal({ show, setShow }) {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      const response = await axios.post(
-        'http://127.0.0.1:8000/api/v1/task/new',
-        {
-          task_name: formData.task_name,
-          description: formData.description,
-          taskImgURL: formData.taskImgURL,
-          tasked_to_id: formData.tasked_to_id,
-          created_by_id: userId,
-        }
-      )
+      const response = await axiosInstance.post('api/v1/task/new', {
+        task_name: formData.task_name,
+        description: formData.description,
+        taskImgURL: formData.taskImgURL,
+        tasked_to_id: formData.tasked_to_id,
+        created_by_id: userId,
+      })
       console.log(response.data)
       console.log('Success Create Task')
       setShow(false)
