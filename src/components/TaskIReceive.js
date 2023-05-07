@@ -23,7 +23,7 @@ function TaskIReceive() {
   }, [])
   let tasksToShow = []
   if (tasks?.length) {
-    tasksToShow = tasks?.map((task, idx) => {
+    tasksToShow = tasks?.map((task) => {
       return (
         <TaskCard
           key={task.id}

@@ -28,25 +28,7 @@ function CreateTaskModal({ show, setShow }) {
       [event.target.name]: event.target.value,
     })
   }
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault()
-  //   console.log('=====================>formData', formData)
-  //   axiosInstance
-  //     .post('api/v1/task/new', {
-  //       task_name: formData.task_name,
-  //       description: formData.description,
-  //       taskImgURL: formData.taskImgURL,
-  //       tasked_to_id: 'leo@gmail.com',
-  //       created_by_id: userId,
-  //     })
-  //     .then((res) => {
-  //       console.log(
-  //         '===============> Success create tasj, res.data is:',
-  //         res.data
-  //       )
-  //
-  //     })
-  // }
+
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
@@ -60,11 +42,11 @@ function CreateTaskModal({ show, setShow }) {
           created_by_id: userId,
         }
       )
-      console.log('Success')
-      setShow(false)
       console.log(response.data)
+      console.log('Success Create Task')
+      setShow(false)
     } catch (error) {
-      console.log('fail')
+      console.log('Fail to create Task')
       return
     }
   }
