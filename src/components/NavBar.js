@@ -7,7 +7,7 @@ import AuthContext from '../context/AuthProvider'
 
 function NavigationBar() {
   const { auth } = useContext(AuthContext)
-  console.log(auth)
+  // console.log(auth)
   const isAuth = auth?.userId
   // const [isAuth, setIsAuth] = useState(false)
   // useEffect(() => {
