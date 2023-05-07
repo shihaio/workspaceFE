@@ -19,7 +19,7 @@ function TaskICreate() {
       <CreateTaskModal show={show} setShow={setShow} />
       <div>
         <h1>TASK I ASSIGN TO MY COLLEUGE</h1>
-        <h1>TASK TASK TASK</h1>
+        <h1>TASK TASK TASK</h1> 
       </div>
     </>
   )
