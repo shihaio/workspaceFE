@@ -7,13 +7,14 @@ import SignUp from './components/SignUp'
 import NavigationBar from './components/NavBar'
 import LogOut from './components/LogOut'
 import TaskIReceive from './components/TaskIReceive'
+import TaskICreate from './components/TaskICreate'
 
 function App() {
   return (
     <div className='App'>
       <NavigationBar />
       <Routes>
-        {/* <Route path='/' element={<TaskICreate />} /> */}
+        <Route path='/' element={<TaskICreate />} />
         <Route path='/task-i-receive' element={<TaskIReceive />} />
         <Route path='/login' element={<LogIn />} />
         <Route path='/signup' element={<SignUp />} />
