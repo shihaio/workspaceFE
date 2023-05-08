@@ -17,9 +17,7 @@ function NavigationBar() {
   //     setIsAuth(!isAuth)
   //   }
   // }, [isAuth])
-  useEffect(() => {
-    console.log('Navigation bar reload with', isAuth)
-  }, [isAuth])
+  useEffect(() => {}, [isAuth])
   return (
     <Navbar
       collapseOnSelect
@@ -45,12 +43,17 @@ function NavigationBar() {
             {isAuth ? (
               <Nav.Link href='/logout'>LOGOUT</Nav.Link>
             ) : (
-              <Nav.Link href='/login'>LOGIN</Nav.Link>
+              <>
+                <Nav.Link href='/login'>LOGIN</Nav.Link>
+                <Nav.Link eventKey={2} href='/signup'>
+                  SIGNUP
+                </Nav.Link>
+              </>
             )}
             {isAdmin && <Nav.Link href='/admin'>ADMIN PAGE</Nav.Link>}
-            <Nav.Link eventKey={2} href='/signup'>
+            {/* <Nav.Link eventKey={2} href='/signup'>
               SIGNUP
-            </Nav.Link>
+            </Nav.Link> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -13,7 +13,6 @@ function TaskICreate() {
 
   const { auth } = useContext(AuthContext)
   const userId = auth?.userId
-  console.log(userId)
   const [tasks, setTasks] = useState([])
 
   useEffect(() => {
