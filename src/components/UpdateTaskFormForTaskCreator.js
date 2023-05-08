@@ -1,9 +1,7 @@
 import React from 'react'
 import { Form } from 'react-bootstrap'
 
-
-
-function UpdateTaskByBoss({ formData, handleChange}) {
+function UpdateTaskFormForTaskCreator({ formData, handleChange }) {
   return (
     <>
       <Form.Label>Task Name</Form.Label>
@@ -44,16 +42,19 @@ function UpdateTaskByBoss({ formData, handleChange}) {
         value={formData?.tasked_to_id || ''}
       />
       <Form.Label>Status</Form.Label>
+
       <Form.Control
-        required
-        type='text'
-        placeholder={formData?.status || ''}
-        name='status'
+        as='select'
         onChange={handleChange}
-        value={formData?.status || ''}
-      />
+        value={formData?.tasked_to_id || ''}
+        name='status'
+      >
+        <option>{formData?.status}</option>
+        <option value='COMPLETED'>APPROVED</option>
+        <option value='CANCELLED'>CANCELLED</option>
+      </Form.Control>
     </>
   )
 }
 
-export default UpdateTaskByBoss
+export default UpdateTaskFormForTaskCreator

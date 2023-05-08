@@ -31,7 +31,7 @@ function LogIn() {
         localStorage.setItem('profileURL', profileURL)
         localStorage.setItem('role', role)
         axiosInstance.defaults.headers['Authorization'] =
-          'JWT ' + localStorage.getItem('access_token')
+          'JWT ' + localStorage.getItem('accessToken')
         setTimeout(navigate('/'), 500, -1)
       })
   }

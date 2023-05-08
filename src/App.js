@@ -10,13 +10,15 @@ import TaskIReceive from './components/TaskIReceive'
 import TaskICreate from './components/TaskICreate'
 import UpdateTask from './components/UpdateTask'
 import CompletedTasks from './components/CompletedTasks'
+import HomePage from './components/HomePage'
 
 function App() {
   return (
     <div className='App'>
       <NavigationBar />
       <Routes>
-        <Route path='/' element={<TaskICreate />} />
+        <Route path='/' element={<HomePage />} />
+        <Route path='/task-i-create' element={<TaskICreate />} />
         <Route path='/task-i-receive' element={<TaskIReceive />} />
         <Route path='/login' element={<LogIn />} />
         <Route path='/signup' element={<SignUp />} />

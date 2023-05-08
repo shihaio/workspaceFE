@@ -12,8 +12,8 @@ function LogOut() {
     // const response = axiosInstance.post('api/v1/auth/logout/blacklist/', {
     //   refresh_token: localStorage.getItem('refresh_token'),
     // })
-    localStorage.removeItem('access_token')
-    localStorage.removeItem('refresh_token')
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('refreshToken')
     localStorage.removeItem('email')
     localStorage.removeItem('profileURL')
     localStorage.removeItem('userId')

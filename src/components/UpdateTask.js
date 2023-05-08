@@ -4,7 +4,7 @@ import { useState, useContext, useEffect } from 'react'
 import { Form } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import axiosInstance from '../axios'
-import UpdateTaskByBoss from './UpdateTaskByBoss'
+import UpdateTaskByBoss from './UpdateTaskFormForTaskCreator'
 import AuthContext from '../context/AuthProvider'
 
 function UpdateTask() {
@@ -33,18 +33,19 @@ function UpdateTask() {
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
-      const response = await axiosInstance.post(
-        `api/v1/task/${params.taskId}`,
-        {
-          task_name: formData.task_name,
-          description: formData.description,
-          taskImgURL: formData.taskImgURL,
-          tasked_to_id: formData.tasked_to_id,
-          created_by_id: formData.created_by_id,
-          status: formData.status,
-        }
-      )
-      console.log(response.data)
+      // const response = await axiosInstance.post(
+      //   `api/v1/task/${params.taskId}`,
+      //   {
+      //     task_name: formData.task_name,
+      //     description: formData.description,
+      //     taskImgURL: formData.taskImgURL,
+      //     tasked_to_id: formData.tasked_to_id,
+      //     created_by_id: formData.created_by_id,
+      //     status: formData.status,
+      //   }
+      // )
+      console.log('=================>formData', formData)
+      // console.log(response.data)
       console.log('Success Updated Task')
     } catch (error) {
       console.log('Fail to Updated Task')
