@@ -22,19 +22,7 @@ function UpdateTask() {
     created_by_id: '',
     tasked_to_id: '',
   })
-  // const [taskDetail, setTaskDetail] = useState(null)
-  // const [user, setUser] = useState(null)
-
-  // useEffect(() => {
-  //   async function getUserEmail() {
-  //     try {
-  //       const response = await axiosInstance.get(
-  //         `api/v1/task/${params.taskId}`
-  //       )
-  //       setTaskDetail(response.data)
-  //     }
-  //   }
-  // })
+  const [taskDetail, setTaskDetail] = useState(null)
 
   // Handle Change is to tell us we add in data here, there are changes going on here.
   const handleChange = (event) => {
@@ -71,8 +59,7 @@ function UpdateTask() {
         const response = await axiosInstance.get(
           `api/v1/task/read/${params.taskId}`
         )
-
-        // console.log(response?.data)
+        console.log(response?.data)
         setFormData(response?.data)
         setTaskDetail(response?.data)
       } catch (error) {
@@ -90,7 +77,7 @@ function UpdateTask() {
           handleChange={handleChange}
         />
       )}
-      {userId === taskDetail?.tasked_to_id && (
+      {userId === formData?.tasked_to_id && (
         <UpdateTaskFormForTaskReceiver
           formData={formData}
           handleChange={handleChange}

@@ -25,11 +25,18 @@ function TaskCard(props) {
         <Card.Body>
           <Card.Title>Task name: {task_name}</Card.Title>
           {created_by_id && (
-            <Card.Subtitle className='mb-2 text-muted'>
-              Task Assigned By: {created_by_id}
-            </Card.Subtitle>
+            <>
+                <h4>Assigned By :</h4>
+                <UserInformation userId={created_by_id} />
+            </>
           )}
-          {tasked_to_id && <UserInformation userId={tasked_to_id} />}
+
+          {tasked_to_id && (
+            <>
+              <h4>Assigned to :</h4>
+              <UserInformation userId={tasked_to_id} />
+            </>
+          )}
           <Button variant='primary'>{status}</Button>
         </Card.Body>
       </Card>
