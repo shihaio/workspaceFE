@@ -52,7 +52,6 @@ function UpdateTaskFormForTaskReceiver({ formData, handleChange }) {
         name='status'
       >
         <option>{formData?.status}</option>
-        <option value='PENDING'>PENDING</option>
         <option value='REQUEST REVIEW'>REQUEST REVIEW</option>
       </Form.Control>
     </>
