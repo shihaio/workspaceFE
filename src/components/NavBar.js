@@ -22,28 +22,6 @@ function NavigationBar() {
     setSeed(Math.random())
   }
 
-  // const [isAuthenticate, setIsAuthenticate] = useState(false)
-  // useEffect(() => {
-  //   if (localStorage.getItem('access_token') !== null) {
-  //     setIsAuthenticate(true)
-  //   }
-  // }, [isAuthenticate])
-  useEffect(() => {
-    console.log('seed in useEffect', seed)
-  }, [seed])
-  // useEffect(() => {
-  //   if (auth?.userId) {
-  //     async function getData() {
-  //       try {
-  //         const response = await axiosInstance.get(
-  //           `api/v1/user/read/${auth?.userId}`
-  //         )
-  //         setUserData(response?.data)
-  //       } catch (error) {}
-  //     }
-  //     getData()
-  //   }
-  // }, [])
   return (
     <Navbar
       collapseOnSelect
@@ -61,7 +39,7 @@ function NavigationBar() {
               <Nav.Link href='/dashboard'>DASHBOARD</Nav.Link>
               <Nav.Link href='/task-i-create'>Task I Create</Nav.Link>
               <Nav.Link href='/task-i-receive'>Task I Receive</Nav.Link>
-              <Nav.Link href='/task-completed'>Completed Tasks </Nav.Link>
+              <Nav.Link href='/task-approved'>Approved Tasks</Nav.Link>
             </Nav>
           )}
           {/* Admin user */}
@@ -71,7 +49,10 @@ function NavigationBar() {
           </Nav>
           <Nav>
             {isAuth ? (
-              <Nav.Link href='/logout'>LOGOUT</Nav.Link>
+              <>
+                <p className='text-light'>Hi {auth?.email}</p>
+                <Nav.Link href='/logout'>LOGOUT</Nav.Link>
+              </>
             ) : (
               <>
                 <Nav.Link href='/login'>LOGIN</Nav.Link>

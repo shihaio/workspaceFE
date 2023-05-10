@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { Form } from 'react-bootstrap'
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
@@ -12,6 +12,13 @@ function CreateTaskModal({ show, setShow }) {
   const navigate = useNavigate()
   const { auth } = useContext(AuthContext)
   const userId = auth?.userId
+  // DEBUG RELOAD PAGE:
+  const [seed, setSeed] = useState(1)
+  const reset = () => {
+    setSeed(Math.random())
+  }
+
+  const [emailList, setEmailList] = useState([])
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
@@ -29,6 +36,21 @@ function CreateTaskModal({ show, setShow }) {
     })
   }
 
+  // useEffect to fetch mail
+
+  useEffect(() => {
+    async function getData() {
+      try {
+        const response = await axiosInstance.get(
+          `api/v1/user/emailList/${userId}`
+        )
+        console.log(response.data)
+        setEmailList(response.data)
+      } catch (error) {}
+    }
+    getData()
+  }, [seed])
+
   const handleSubmit = async (event) => {
     event.preventDefault()
     try {
@@ -41,6 +63,7 @@ function CreateTaskModal({ show, setShow }) {
       })
       console.log(response.data)
       console.log('Success Create Task')
+      reset()
       setShow(false)
     } catch (error) {
       console.log('Fail to create Task')
@@ -85,13 +108,20 @@ function CreateTaskModal({ show, setShow }) {
           <br />
           <Form.Label>Task Assigned To</Form.Label>
           <Form.Control
-            required
-            type='text'
-            placeholder='Please fill in task description here'
-            name='tasked_to_id'
+            as='select'
             onChange={handleChange}
             value={formData?.tasked_to_id || ''}
-          />
+            name='tasked_to_id'
+          >
+            <option>{formData?.status}</option>
+            {emailList.map((obj, idx) => {
+              return (
+                <option key={idx} value={obj?.email}>
+                  {obj?.email}
+                </option>
+              )
+            })}
+          </Form.Control>
         </Form.Group>
       </Modal.Body>
       <Modal.Footer>

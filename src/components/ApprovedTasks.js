@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import TaskCard from './TaskCard'
 import axiosInstance from '../axios'
 
-function CompletedTasks() {
+function ApprovedTasks() {
   const [tasks, setTasks] = useState([])
   useEffect(() => {
     async function getData() {
@@ -38,4 +38,4 @@ function CompletedTasks() {
   )
 }
 
-export default CompletedTasks
+export default ApprovedTasks

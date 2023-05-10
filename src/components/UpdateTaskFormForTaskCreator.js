@@ -60,7 +60,7 @@ function UpdateTaskFormForTaskCreator({ formData, handleChange }) {
         name='status'
       >
         <option>{formData?.status}</option>
-        <option value='COMPLETED'>APPROVED</option>
+        <option value='APPROVED'>APPROVED</option>
         <option value='PENDING'>CANCELLED</option>
       </Form.Control>
     </>

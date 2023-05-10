@@ -9,7 +9,7 @@ import LogOut from './components/LogOut'
 import TaskIReceive from './components/TaskIReceive'
 import TaskICreate from './components/TaskICreate'
 import UpdateTask from './components/UpdateTask'
-import CompletedTasks from './components/CompletedTasks'
+import ApprovedTasks from './components/ApprovedTasks'
 import HomePage from './components/HomePage'
 import AdminUserList from './components/AdminUserList'
 import AdminTaskList from './components/AdminTaskList'
@@ -25,7 +25,7 @@ function App() {
         <Route path='/login' element={<LogIn />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/logout' element={<LogOut />} />
-        <Route path='/task-completed' element={<CompletedTasks />} />
+        <Route path='/task-approved' element={<ApprovedTasks />} />
         <Route path='/task/update/:taskId' element={<UpdateTask />} />
         <Route path='/admin/users' element={<AdminUserList />} />
         <Route path='/admin/tasks' element={<AdminTaskList />} />

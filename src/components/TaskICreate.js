@@ -15,6 +15,7 @@ function TaskICreate() {
   const userId = auth?.userId
   const [tasks, setTasks] = useState([])
 
+  // useEffect to fetch task
   useEffect(() => {
     async function getData() {
       try {
@@ -27,6 +28,8 @@ function TaskICreate() {
     }
     getData()
   }, [])
+
+
 
   let tasksToShow = []
   if (tasks?.length) {

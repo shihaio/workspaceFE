@@ -10,6 +10,7 @@ function SignUp() {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
+    profileURL: '',
   })
 
   const handleSubmit = async (event) => {
@@ -20,9 +21,10 @@ function SignUp() {
       .post('api/v1/auth/signup/', {
         email: formData.email,
         password: formData.password,
+        profileURL: formData.profileURL,
       })
       .then((res) => {
-        setTimeout(navigate('/login'), 500, -1)
+        navigate('/login')
         console.log(res)
         console.log(res.data)
       })
@@ -63,6 +65,17 @@ function SignUp() {
             name='password'
             onChange={handleChange}
             value={formData?.password || ''}
+          />
+        </Form.Group>
+        <Form.Group className='mb-3' controlId='formBasicPassword'>
+          <Form.Label>Profile Image URL</Form.Label>
+          <Form.Control
+            required
+            type='profileURL'
+            placeholder='Paste Profile URL here'
+            name='profileURL'
+            onChange={handleChange}
+            value={formData?.profileURL || ''}
           />
         </Form.Group>
         <Button variant='primary' type='submit' onClick={handleSubmit}>
