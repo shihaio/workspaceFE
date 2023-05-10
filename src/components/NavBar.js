@@ -31,19 +31,19 @@ function NavigationBar() {
   useEffect(() => {
     console.log('seed in useEffect', seed)
   }, [seed])
-  useEffect(() => {
-    if (auth?.userId) {
-      async function getData() {
-        try {
-          const response = await axiosInstance.get(
-            `api/v1/user/read/${auth?.userId}`
-          )
-          setUserData(response?.data)
-        } catch (error) {}
-      }
-      getData()
-    }
-  }, [userData])
+  // useEffect(() => {
+  //   if (auth?.userId) {
+  //     async function getData() {
+  //       try {
+  //         const response = await axiosInstance.get(
+  //           `api/v1/user/read/${auth?.userId}`
+  //         )
+  //         setUserData(response?.data)
+  //       } catch (error) {}
+  //     }
+  //     getData()
+  //   }
+  // }, [])
   return (
     <Navbar
       collapseOnSelect
