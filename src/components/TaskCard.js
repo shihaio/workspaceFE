@@ -7,6 +7,7 @@ import Modal from 'react-bootstrap/Modal'
 import UserInformation from './UserInformation'
 import axiosInstance from '../axios'
 import { useParams } from 'react-router-dom'
+import AuthContext from '../context/AuthProvider'
 
 function TaskCard(props) {
   const {
@@ -20,11 +21,13 @@ function TaskCard(props) {
     setUpdateData,
   } = props
 
+  const { auth } = useContext(AuthContext)
+  const userId = Number(auth?.userId)
+  const isAdmin = JSON.parse(auth?.is_admin)
+
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
-
-  const params = useParams()
 
   const handleDelete = async (event) => {
     event.preventDefault()
@@ -54,9 +57,18 @@ function TaskCard(props) {
           )}
           <Button variant='primary'>{status}</Button>
         </Card.Body>
-        <Button variant='primary' type='submit' onClick={handleDelete}>
-          DELETE
-        </Button>
+
+        {isAdmin && (
+          <Button variant='primary' type='submit' onClick={handleDelete}>
+            DELETE
+          </Button>
+        )}
+
+        {!created_by_id && (
+          <Button variant='primary' type='submit' onClick={handleDelete}>
+            DELETE
+          </Button>
+        )}
       </Card>
 
       <TaskDetailModal show={show} setShow={setShow} taskId={taskId} />

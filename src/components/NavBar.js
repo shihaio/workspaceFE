@@ -2,7 +2,6 @@ import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { useEffect, useState, useContext } from 'react'
-import useAuth from '../hooks/useAuth'
 import AuthContext from '../context/AuthProvider'
 
 function NavigationBar() {
