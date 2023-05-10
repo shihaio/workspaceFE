@@ -2,21 +2,48 @@ import Container from 'react-bootstrap/Container'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { useEffect, useState, useContext } from 'react'
+import { useParams, useLocation, Link } from 'react-router-dom'
 import AuthContext from '../context/AuthProvider'
+import { Button } from 'react-bootstrap'
+import axiosInstance from '../axios'
 
 function NavigationBar() {
   const { auth } = useContext(AuthContext)
-  // console.log(auth)
+  const [userData, setUserData] = useState(null)
+  const location = useLocation()
   const isAuth = auth?.userId
-  const isAdmin = JSON.parse(auth?.is_admin)
+  const [timeFlag, setTimeFlag] = useState(1)
+  let isAdmin = false
+  if (auth?.is_admin) {
+    isAdmin = JSON.parse(auth?.is_admin)
+  }
+  const [seed, setSeed] = useState(1)
+  const reset = () => {
+    setSeed(Math.random())
+  }
 
-  // const [isAuth, setIsAuth] = useState(false)
+  // const [isAuthenticate, setIsAuthenticate] = useState(false)
   // useEffect(() => {
   //   if (localStorage.getItem('access_token') !== null) {
-  //     setIsAuth(!isAuth)
+  //     setIsAuthenticate(true)
   //   }
-  // }, [isAuth])
-  useEffect(() => {}, [isAuth])
+  // }, [isAuthenticate])
+  useEffect(() => {
+    console.log('seed in useEffect', seed)
+  }, [seed])
+  useEffect(() => {
+    if (auth?.userId) {
+      async function getData() {
+        try {
+          const response = await axiosInstance.get(
+            `api/v1/user/read/${auth?.userId}`
+          )
+          setUserData(response?.data)
+        } catch (error) {}
+      }
+      getData()
+    }
+  }, [userData])
   return (
     <Navbar
       collapseOnSelect
@@ -54,6 +81,7 @@ function NavigationBar() {
               </>
             )}
           </Nav>
+          {/* <Button onClick={reset}>Test</Button> */}
         </Navbar.Collapse>
       </Container>
     </Navbar>
