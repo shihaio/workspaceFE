@@ -9,7 +9,11 @@ import TaskCard from './TaskCard'
 function TaskICreate() {
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
+
   const handleShow = () => setShow(true)
+
+  // DEBUG RELOAD PAGE:
+  const [seed, setSeed] = useState(1)
 
   const { auth } = useContext(AuthContext)
   const userId = auth?.userId
@@ -27,9 +31,7 @@ function TaskICreate() {
       } catch (error) {}
     }
     getData()
-  }, [])
-
-
+  }, [seed])
 
   let tasksToShow = []
   if (tasks?.length) {
@@ -53,7 +55,7 @@ function TaskICreate() {
         <Button variant='primary' onClick={setShow}>
           Create Task
         </Button>
-        <CreateTaskModal show={show} setShow={setShow} />
+        <CreateTaskModal show={show} setShow={setShow} setSeed={setSeed} />
         <h1>TASK CREATED BY ME :</h1>
         {tasksToShow}
       </div>

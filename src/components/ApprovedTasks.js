@@ -32,7 +32,7 @@ function ApprovedTasks() {
   }
   return (
     <div>
-      <h1>TASK ASSIGNED TO ME :</h1>
+      <h1>ALL TASK APPROVED IN ORGANIZATION :</h1>
       {tasksToShow}
     </div>
   )

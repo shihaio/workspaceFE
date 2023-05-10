@@ -8,15 +8,10 @@ import { useNavigate, Link } from 'react-router-dom'
 import AuthContext from '../context/AuthProvider'
 import axios from 'axios'
 
-function CreateTaskModal({ show, setShow }) {
+function CreateTaskModal({ show, setShow, setSeed }) {
   const navigate = useNavigate()
   const { auth } = useContext(AuthContext)
   const userId = auth?.userId
-  // DEBUG RELOAD PAGE:
-  const [seed, setSeed] = useState(1)
-  const reset = () => {
-    setSeed(Math.random())
-  }
 
   const [emailList, setEmailList] = useState([])
 
@@ -49,7 +44,7 @@ function CreateTaskModal({ show, setShow }) {
       } catch (error) {}
     }
     getData()
-  }, [seed])
+  }, [])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -63,8 +58,9 @@ function CreateTaskModal({ show, setShow }) {
       })
       console.log(response.data)
       console.log('Success Create Task')
-      reset()
       setShow(false)
+      // Debug reload page
+      setSeed(Math.random())
     } catch (error) {
       console.log('Fail to create Task')
       return
