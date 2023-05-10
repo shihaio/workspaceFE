@@ -8,10 +8,14 @@ import UpdateTaskByBoss from './UpdateTaskFormForTaskCreator'
 import AuthContext from '../context/AuthProvider'
 import UpdateTaskFormForTaskCreator from './UpdateTaskFormForTaskCreator'
 import UpdateTaskFormForTaskReceiver from './UpdateTaskFormForTaskReceiver'
+import { useNavigate } from 'react-router-dom'
 
 function UpdateTask() {
+  const navigate = useNavigate()
+
   const { auth } = useContext(AuthContext)
   const userId = Number(auth?.userId)
+  const isAdmin = JSON.parse(auth?.is_admin)
   // const authObj = JSON.parse(auth)
   const params = useParams()
   //  they will pass the params here
@@ -22,19 +26,7 @@ function UpdateTask() {
     created_by_id: '',
     tasked_to_id: '',
   })
-  // const [taskDetail, setTaskDetail] = useState(null)
-  // const [user, setUser] = useState(null)
-
-  // useEffect(() => {
-  //   async function getUserEmail() {
-  //     try {
-  //       const response = await axiosInstance.get(
-  //         `api/v1/task/${params.taskId}`
-  //       )
-  //       setTaskDetail(response.data)
-  //     }
-  //   }
-  // })
+  const [taskDetail, setTaskDetail] = useState(null)
 
   // Handle Change is to tell us we add in data here, there are changes going on here.
   const handleChange = (event) => {
@@ -58,6 +50,7 @@ function UpdateTask() {
           status: formData.status,
         }
       )
+      navigate(-1)
       console.log(response.data)
       console.log('Success Updated Task')
     } catch (error) {
@@ -71,10 +64,21 @@ function UpdateTask() {
         const response = await axiosInstance.get(
           `api/v1/task/read/${params.taskId}`
         )
+        const taskData = response?.data
+        const personInChargeResponse = await axiosInstance.get(
+          `api/v1/user/read/${taskData?.tasked_to_id}`
+        )
 
-        // console.log(response?.data)
-        setFormData(response?.data)
-        setTaskDetail(response?.data)
+        const taskCreatorResponse = await axiosInstance.get(
+          `api/v1/user/read/${taskData?.created_by_id}`
+        )
+
+        setFormData({
+          ...taskData,
+          tasked_to_id: personInChargeResponse?.data?.email,
+          created_by_id: taskCreatorResponse?.data?.email,
+        })
+        setTaskDetail(taskData)
       } catch (error) {
         console.log('Fail load task detail')
       }
@@ -84,7 +88,13 @@ function UpdateTask() {
 
   return (
     <Form.Group className='mb-3' controlId='formList'>
-      {userId === taskDetail?.created_by_id && (
+      {userId === taskDetail?.created_by_id && !isAdmin && (
+        <UpdateTaskFormForTaskCreator
+          formData={formData}
+          handleChange={handleChange}
+        />
+      )}
+      {isAdmin && (
         <UpdateTaskFormForTaskCreator
           formData={formData}
           handleChange={handleChange}

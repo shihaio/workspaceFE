@@ -18,10 +18,10 @@ function TaskICreate() {
   useEffect(() => {
     async function getData() {
       try {
-        const TaskICreate = await axiosInstance.get(
+        const response = await axiosInstance.get(
           `api/v1/task/createdBy/${userId}`
         )
-        const createdTaskList = TaskICreate.data
+        const createdTaskList = response.data
         setTasks(createdTaskList)
       } catch (error) {}
     }

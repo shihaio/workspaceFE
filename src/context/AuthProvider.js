@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
     profileURL: localStorage.getItem('profileURL') || '',
     role: localStorage.getItem('role') || '',
     accessToken: localStorage.getItem('accessToken') || '',
+    is_admin: localStorage.getItem('is_admin') || '',
   })
 
   return (

@@ -11,6 +11,8 @@ import TaskICreate from './components/TaskICreate'
 import UpdateTask from './components/UpdateTask'
 import CompletedTasks from './components/CompletedTasks'
 import HomePage from './components/HomePage'
+import AdminUserList from './components/AdminUserList'
+import AdminTaskList from './components/AdminTaskList'
 
 function App() {
   return (
@@ -25,6 +27,8 @@ function App() {
         <Route path='/logout' element={<LogOut />} />
         <Route path='/task-completed' element={<CompletedTasks />} />
         <Route path='/task/update/:taskId' element={<UpdateTask />} />
+        <Route path='/admin/users' element={<AdminUserList />} />
+        <Route path='/admin/tasks' element={<AdminTaskList />} />
       </Routes>
     </div>
   )

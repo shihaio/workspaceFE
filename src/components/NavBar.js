@@ -9,8 +9,8 @@ function NavigationBar() {
   const { auth } = useContext(AuthContext)
   // console.log(auth)
   const isAuth = auth?.userId
-  console.log(isAuth)
-  const isAdmin = false
+  const isAdmin = JSON.parse(auth?.is_admin)
+
   // const [isAuth, setIsAuth] = useState(false)
   // useEffect(() => {
   //   if (localStorage.getItem('access_token') !== null) {
@@ -30,7 +30,7 @@ function NavigationBar() {
         <Navbar.Brand href='/'>WORKSPACE</Navbar.Brand>
         <Navbar.Toggle aria-controls='responsive-navbar-nav' />
         <Navbar.Collapse id='responsive-navbar-nav'>
-          {isAuth && (
+          {isAuth && isAdmin == false && (
             <Nav className='me-auto'>
               <Nav.Link href='/dashboard'>DASHBOARD</Nav.Link>
               <Nav.Link href='/task-i-create'>Task I Create</Nav.Link>
@@ -38,7 +38,11 @@ function NavigationBar() {
               <Nav.Link href='/task-completed'>Completed Tasks </Nav.Link>
             </Nav>
           )}
-
+          {/* Admin user */}
+          <Nav className='me-auto'>
+            {isAdmin && <Nav.Link href='/admin/users'>User List</Nav.Link>}
+            {isAdmin && <Nav.Link href='/admin/tasks'>Task List</Nav.Link>}
+          </Nav>
           <Nav>
             {isAuth ? (
               <Nav.Link href='/logout'>LOGOUT</Nav.Link>
@@ -50,10 +54,6 @@ function NavigationBar() {
                 </Nav.Link>
               </>
             )}
-            {isAdmin && <Nav.Link href='/admin'>ADMIN PAGE</Nav.Link>}
-            {/* <Nav.Link eventKey={2} href='/signup'>
-              SIGNUP
-            </Nav.Link> */}
           </Nav>
         </Navbar.Collapse>
       </Container>

@@ -25,11 +25,12 @@ function LogIn() {
         localStorage.setItem('accessToken', res.data.access)
         localStorage.setItem('refreshToken', res.data.refresh)
         const decoded = jwt_decode(res.data.access)
-        const { email, user_id, profileURL, role } = decoded
+        const { email, user_id, profileURL, role, is_admin } = decoded
         localStorage.setItem('userId', user_id)
         localStorage.setItem('email', email)
         localStorage.setItem('profileURL', profileURL)
         localStorage.setItem('role', role)
+        localStorage.setItem('is_admin', is_admin)
         axiosInstance.defaults.headers['Authorization'] =
           'JWT ' + localStorage.getItem('accessToken')
         setTimeout(navigate('/'), 500, -1)

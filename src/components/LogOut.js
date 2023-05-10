@@ -18,6 +18,7 @@ function LogOut() {
     localStorage.removeItem('profileURL')
     localStorage.removeItem('userId')
     localStorage.removeItem('role')
+    localStorage.removeItem('is_admin')
     axiosInstance.defaults.headers['Authorization'] = null
     // setTimeout(navigate('/login'), 3000, -1)
     navigate('/login')

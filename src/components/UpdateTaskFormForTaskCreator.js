@@ -4,6 +4,7 @@ import { Form } from 'react-bootstrap'
 function UpdateTaskFormForTaskCreator({ formData, handleChange }) {
   return (
     <>
+      <h1>Update TaskForm for Creator</h1>
       <Form.Label>Task Name</Form.Label>
       <Form.Control
         required
@@ -32,6 +33,15 @@ function UpdateTaskFormForTaskCreator({ formData, handleChange }) {
         value={formData?.taskImgURL || ''}
       />
       <br />
+      <Form.Label>Task created_by_id</Form.Label>
+      <Form.Control
+        required
+        type='text'
+        placeholder={formData?.created_by_id || ''}
+        name='tasked_to_id'
+        onChange={handleChange}
+        value={formData?.created_by_id || ''}
+      />
       <Form.Label>Task Assigned To</Form.Label>
       <Form.Control
         required
