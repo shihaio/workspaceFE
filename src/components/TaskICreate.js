@@ -9,7 +9,6 @@ import TaskCard from './TaskCard'
 function TaskICreate() {
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
-
   const handleShow = () => setShow(true)
 
   // DEBUG RELOAD PAGE:
@@ -28,7 +27,6 @@ function TaskICreate() {
         )
         const createdTaskList = response.data
         setTasks(createdTaskList)
-
       } catch (error) {}
     }
     getData()

@@ -59,14 +59,7 @@ function UpdateTaskFormForTaskCreator({ formData, handleChange }) {
       />
       <br />
       <Form.Label>Task created_by_id</Form.Label>
-      <Form.Control
-        as='select'
-        onChange={handleChange}
-        name='created_by_id'
-        // type='text'
-        // placeholder={formData?.created_by_id || ''}
-        // value={formData?.created_by_id || ''}
-      >
+      <Form.Control as='select' onChange={handleChange} name='created_by_id'>
         <option>{formData?.tasked_to_id}</option>
         {emailList.map((obj, idx) => {
           return (
@@ -78,14 +71,7 @@ function UpdateTaskFormForTaskCreator({ formData, handleChange }) {
       </Form.Control>
 
       <Form.Label>Task Assigned To</Form.Label>
-      <Form.Control
-        as='select'
-        onChange={handleChange}
-        name='tasked_to_id'
-        // type='text'
-        // placeholder={formData?.tasked_to_id || ''}
-        // value={formData?.tasked_to_id || ''}
-      >
+      <Form.Control as='select' onChange={handleChange} name='tasked_to_id'>
         <option>{formData?.tasked_to_id}</option>
         {emailList.map((obj, idx) => {
           return (

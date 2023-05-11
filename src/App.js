@@ -13,6 +13,7 @@ import ApprovedTasks from './components/ApprovedTasks'
 import HomePage from './components/HomePage'
 import AdminUserList from './components/AdminUserList'
 import AdminTaskList from './components/AdminTaskList'
+import Dashboard from './components/Dashboard'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path='/task/update/:taskId' element={<UpdateTask />} />
         <Route path='/admin/users' element={<AdminUserList />} />
         <Route path='/admin/tasks' element={<AdminTaskList />} />
+        <Route path='/dashboard/' element={<Dashboard />} />
       </Routes>
     </div>
   )
