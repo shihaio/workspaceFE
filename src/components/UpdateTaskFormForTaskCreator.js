@@ -1,11 +1,32 @@
 import React from 'react'
+import { useState, useContext, useEffect } from 'react'
 import Form from 'react-bootstrap/Form'
-
+import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
+import axiosInstance from '../axios'
 import { useNavigate, Link } from 'react-router-dom'
 import AuthContext from '../context/AuthProvider'
 
 function UpdateTaskFormForTaskCreator({ formData, handleChange }) {
+  const navigate = useNavigate()
+  const { auth } = useContext(AuthContext)
+  const userId = auth?.userId
+
+  const [emailList, setEmailList] = useState([])
+
+  useEffect(() => {
+    async function getData() {
+      try {
+        const response = await axiosInstance.get(
+          `api/v1/user/emailList/${userId}`
+        )
+        console.log(response.data)
+        setEmailList(response.data)
+      } catch (error) {}
+    }
+    getData()
+  }, [])
+
   return (
     <>
       <h1>Update TaskForm for Creator</h1>
@@ -39,13 +60,23 @@ function UpdateTaskFormForTaskCreator({ formData, handleChange }) {
       <br />
       <Form.Label>Task created_by_id</Form.Label>
       <Form.Control
-        required
-        type='text'
-        placeholder={formData?.created_by_id || ''}
-        name='tasked_to_id'
+        as='select'
         onChange={handleChange}
-        value={formData?.created_by_id || ''}
-      />
+        name='created_by_id'
+        // type='text'
+        // placeholder={formData?.created_by_id || ''}
+        // value={formData?.created_by_id || ''}
+      >
+        <option>{formData?.tasked_to_id}</option>
+        {emailList.map((obj, idx) => {
+          return (
+            <option key={idx} value={obj?.email}>
+              {obj?.email}
+            </option>
+          )
+        })}
+      </Form.Control>
+
       <Form.Label>Task Assigned To</Form.Label>
       <Form.Control
         as='select'
@@ -56,18 +87,13 @@ function UpdateTaskFormForTaskCreator({ formData, handleChange }) {
         // value={formData?.tasked_to_id || ''}
       >
         <option>{formData?.tasked_to_id}</option>
-        
-        emailList = {formData?.tasked_to_id}
-
-        let newEmailList = []
-
-        newEmailList = emailList.map((obj, idx) => {
-          return
-        })
-
-
-
-
+        {emailList.map((obj, idx) => {
+          return (
+            <option key={idx} value={obj?.email}>
+              {obj?.email}
+            </option>
+          )
+        })}
       </Form.Control>
 
       <Form.Label>Status</Form.Label>

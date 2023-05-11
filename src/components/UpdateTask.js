@@ -72,6 +72,7 @@ function UpdateTask() {
         const taskCreatorResponse = await axiosInstance.get(
           `api/v1/user/read/${taskData?.created_by_id}`
         )
+
         setFormData({
           ...taskData,
           tasked_to_id: personInChargeResponse?.data?.email,
