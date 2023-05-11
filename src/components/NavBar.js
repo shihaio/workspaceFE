@@ -28,7 +28,7 @@ function NavigationBar() {
       expand='lg'
       bg='dark'
       variant='dark'
-      className='mb-3'
+      // className='mb-3'
     >
       <Container>
         <Navbar.Brand href='/'>WORKSPACE</Navbar.Brand>

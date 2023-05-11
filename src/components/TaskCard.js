@@ -27,14 +27,17 @@ function TaskCard(props) {
 
   const [show, setShow] = useState(false)
   const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
+  const handleShow = (event) => {
+    setShow(true)
+    event.stopPropagation()
+  }
 
   const handleDelete = async (event) => {
     event.preventDefault()
     axiosInstance.post(`api/v1/task/delete/${taskId}`).then((res) => {
       setSeed(Math.random())
-      console.log('complete delete task')
     })
+    event.stopPropagation()
   }
 
   return (
@@ -56,19 +59,17 @@ function TaskCard(props) {
             </>
           )}
           <Button variant='primary'>{status}</Button>
+          {isAdmin && (
+            <Button variant='primary' type='submit' onClick={handleDelete}>
+              DELETE
+            </Button>
+          )}
+          {!created_by_id && (
+            <Button variant='primary' type='submit' onClick={handleDelete}>
+              DELETE
+            </Button>
+          )}
         </Card.Body>
-
-        {isAdmin && (
-          <Button variant='primary' type='submit' onClick={handleDelete}>
-            DELETE
-          </Button>
-        )}
-
-        {!created_by_id && (
-          <Button variant='primary' type='submit' onClick={handleDelete}>
-            DELETE
-          </Button>
-        )}
       </Card>
 
       <TaskDetailModal show={show} setShow={setShow} taskId={taskId} />

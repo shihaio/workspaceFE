@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 
 function AdminTaskList() {
   const [tasks, setTasks] = useState([])
-  const [updateData, setUpdateData] = useState(new Date())
+  const [seed, setSeed] = useState(1)
 
   useEffect(() => {
     async function getData() {
@@ -16,7 +16,7 @@ function AdminTaskList() {
       } catch (error) {}
     }
     getData()
-  }, [updateData])
+  }, [seed])
 
   let tasksToShow = []
   if (tasks?.length) {
@@ -30,12 +30,8 @@ function AdminTaskList() {
           description={task?.description}
           created_by_id={task?.created_by_id}
           tasked_to_id={task?.tasked_to_id}
-          setUpdateData={setUpdateData}
+          setSeed={setSeed}
         />
-        // <>
-        //   <h4> task name is: {task?.task_name}</h4>
-        //   <h4> task description is: {task?.description}</h4>
-        // </>
       )
     })
   }
