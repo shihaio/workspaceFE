@@ -44,6 +44,7 @@ function TaskICreate() {
           description={task?.description}
           // created_by_id={task?.created_by_id}
           tasked_to_id={task?.tasked_to_id}
+          setSeed={setSeed}
         />
       )
     })

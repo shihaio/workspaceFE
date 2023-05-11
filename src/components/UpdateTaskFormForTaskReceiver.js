@@ -43,13 +43,13 @@ function UpdateTaskFormForTaskReceiver({ formData, handleChange }) {
         onChange={handleChange}
         value={formData?.created_by_id || ''}
       />
-      
+
       <Form.Label>Status</Form.Label>
 
       <Form.Control
         as='select'
         onChange={handleChange}
-        value={formData?.created_by_id || ''}
+        value={formData?.status || ''}
         name='status'
       >
         <option>{formData?.status}</option>

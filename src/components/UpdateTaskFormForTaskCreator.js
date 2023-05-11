@@ -11,6 +11,7 @@ function UpdateTaskFormForTaskCreator({ formData, handleChange }) {
   const navigate = useNavigate()
   const { auth } = useContext(AuthContext)
   const userId = auth?.userId
+  const isAdmin = JSON.parse(auth?.is_admin)
 
   const [emailList, setEmailList] = useState([])
 
@@ -20,7 +21,7 @@ function UpdateTaskFormForTaskCreator({ formData, handleChange }) {
         const response = await axiosInstance.get(
           `api/v1/user/emailList/${userId}`
         )
-        console.log(response.data)
+        // console.log(response.data)
         setEmailList(response.data)
       } catch (error) {}
     }
@@ -58,17 +59,25 @@ function UpdateTaskFormForTaskCreator({ formData, handleChange }) {
         value={formData?.taskImgURL || ''}
       />
       <br />
-      <Form.Label>Task created_by_id</Form.Label>
-      <Form.Control as='select' onChange={handleChange} name='created_by_id'>
-        <option>{formData?.tasked_to_id}</option>
-        {emailList.map((obj, idx) => {
-          return (
-            <option key={idx} value={obj?.email}>
-              {obj?.email}
-            </option>
-          )
-        })}
-      </Form.Control>
+      {isAdmin && (
+        <>
+          <Form.Label>Task Created By</Form.Label>
+          <Form.Control
+            as='select'
+            onChange={handleChange}
+            name='created_by_id'
+          >
+            <option>{formData?.created_by_id}</option>
+            {emailList.map((obj, idx) => {
+              return (
+                <option key={idx} value={obj?.email}>
+                  {obj?.email}
+                </option>
+              )
+            })}
+          </Form.Control>
+        </>
+      )}
 
       <Form.Label>Task Assigned To</Form.Label>
       <Form.Control as='select' onChange={handleChange} name='tasked_to_id'>
@@ -87,7 +96,7 @@ function UpdateTaskFormForTaskCreator({ formData, handleChange }) {
       <Form.Control
         as='select'
         onChange={handleChange}
-        value={formData?.tasked_to_id || ''}
+        value={formData?.status || ''}
         name='status'
       >
         <option>{formData?.status}</option>

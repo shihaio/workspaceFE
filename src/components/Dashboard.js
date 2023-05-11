@@ -24,17 +24,14 @@ function Dashboard() {
 
   return (
     <div>
-      <h1>Dashboard</h1>
-
       <Container>
         <Row>
-          {/* <img src={user?.profileURL} alt='profile image' fluid />; */}
-          <Col xs={2} md={1}>
-            <Image src={user?.profileURL} fluid />;
+          <Col xs={4} md={2}>
+            <Image src={user?.profileURL} fluid />
           </Col>
-          <h3>User Email: {user?.email} </h3>
-          <p> Your Position in our organization: {user?.role} </p>
-          <p> Tour profile created at: {user?.user_created_date} </p>
+          <p>User Email: {user?.email}</p>
+          <p>Position {user?.role}</p>
+          <p>Joined: {user?.user_created_date}</p>
         </Row>
       </Container>
     </div>

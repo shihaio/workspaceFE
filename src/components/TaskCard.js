@@ -18,7 +18,7 @@ function TaskCard(props) {
     created_by_id,
     tasked_to_id,
     taskImgURL,
-    setUpdateData,
+    setSeed,
   } = props
 
   const { auth } = useContext(AuthContext)
@@ -32,7 +32,7 @@ function TaskCard(props) {
   const handleDelete = async (event) => {
     event.preventDefault()
     axiosInstance.post(`api/v1/task/delete/${taskId}`).then((res) => {
-      setUpdateData(new Date())
+      setSeed(Math.random())
       console.log('complete delete task')
     })
   }

@@ -35,6 +35,9 @@ function UpdateTask() {
       [event.target.name]: event.target.value,
     })
   }
+  useEffect(() => {
+    console.log(typeof isAdmin)
+  }, [])
 
   const handleSubmit = async (event) => {
     event.preventDefault()
@@ -90,7 +93,7 @@ function UpdateTask() {
     <Form.Group className='mb-3' controlId='formList'>
       {userId === taskDetail?.created_by_id && !isAdmin && (
         <UpdateTaskFormForTaskCreator
-          formData={formData?.tasked_to_id}
+          formData={formData}
           handleChange={handleChange}
         />
       )}
