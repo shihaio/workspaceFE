@@ -6,6 +6,7 @@ import { useParams, useLocation, Link } from 'react-router-dom'
 import AuthContext from '../context/AuthProvider'
 import { Button } from 'react-bootstrap'
 import axiosInstance from '../axios'
+import Image from 'react-bootstrap/Image'
 
 function NavigationBar() {
   const { auth } = useContext(AuthContext)
@@ -50,7 +51,13 @@ function NavigationBar() {
           <Nav>
             {isAuth ? (
               <>
-                <p className='text-light'>Hi {auth?.email}</p>
+                <Image
+                  src={auth?.profileURL}
+                  roundedCircle={true}
+                  style={{ width: '2rem', height: '2rem' }}
+                ></Image>
+                <p className='text-light'>{auth?.email}</p>
+
                 <Nav.Link href='/logout'>LOGOUT</Nav.Link>
               </>
             ) : (

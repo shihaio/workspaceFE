@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container'
 import Image from 'react-bootstrap/Image'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
+import { Link } from 'react-router-dom'
 
 function Dashboard() {
   const { auth } = useContext(AuthContext)
@@ -23,18 +24,36 @@ function Dashboard() {
   }, [])
 
   return (
-    <div>
-      <Container>
-        <Row>
-          <Col xs={4} md={2}>
-            <Image src={user?.profileURL} fluid />
-          </Col>
+    <Container className='mt-3'>
+      {/* <div className=''>
+        <div>
+          <Image src={user?.profileURL} fluid />
+        </div>
+        <div>
           <p>User Email: {user?.email}</p>
           <p>Position {user?.role}</p>
           <p>Joined: {user?.user_created_date}</p>
-        </Row>
-      </Container>
-    </div>
+        </div>
+      </div> */}
+
+      <Row>
+        <Col xs={6} md={4}>
+          <Image src={user?.profileURL} fluid />
+        </Col>
+        <Col>
+          <p>User Email: {user?.email}</p>
+          <p>Position {user?.role}</p>
+          <p>Joined: {user?.user_created_date}</p>
+          <Link
+            className='btn btn-outline-dark bth-dark'
+            role='button'
+            to='/dashboard/edit'
+          >
+            EDIT
+          </Link>
+        </Col>
+      </Row>
+    </Container>
   )
 }
 

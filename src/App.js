@@ -14,6 +14,7 @@ import HomePage from './components/HomePage'
 import AdminUserList from './components/AdminUserList'
 import AdminTaskList from './components/AdminTaskList'
 import Dashboard from './components/Dashboard'
+import EditProfile from './components/EditProfile'
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path='/admin/users' element={<AdminUserList />} />
         <Route path='/admin/tasks' element={<AdminTaskList />} />
         <Route path='/dashboard/' element={<Dashboard />} />
+        <Route path='/dashboard/edit' element={<EditProfile />} />
       </Routes>
     </div>
   )

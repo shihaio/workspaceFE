@@ -12,7 +12,6 @@ function HomePage() {
           className='btn btn-outline-light bth-lg'
           role='button'
           to='/task-i-receive'
-          variant='dark'
         >
           SEE YOUR TASK TODAY
         </Link>
@@ -20,7 +19,6 @@ function HomePage() {
           className='btn btn-outline-light bth-lg'
           role='button'
           to='/task-i-create'
-          variant='dark'
         >
           SEE YOUR TASK ASSIGNED
         </Link>
