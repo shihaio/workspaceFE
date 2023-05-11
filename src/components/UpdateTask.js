@@ -72,7 +72,6 @@ function UpdateTask() {
         const taskCreatorResponse = await axiosInstance.get(
           `api/v1/user/read/${taskData?.created_by_id}`
         )
-
         setFormData({
           ...taskData,
           tasked_to_id: personInChargeResponse?.data?.email,
@@ -90,7 +89,7 @@ function UpdateTask() {
     <Form.Group className='mb-3' controlId='formList'>
       {userId === taskDetail?.created_by_id && !isAdmin && (
         <UpdateTaskFormForTaskCreator
-          formData={formData}
+          formData={formData?.tasked_to_id}
           handleChange={handleChange}
         />
       )}

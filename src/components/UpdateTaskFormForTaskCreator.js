@@ -1,5 +1,9 @@
 import React from 'react'
-import { Form } from 'react-bootstrap'
+import Form from 'react-bootstrap/Form'
+
+import Button from 'react-bootstrap/Button'
+import { useNavigate, Link } from 'react-router-dom'
+import AuthContext from '../context/AuthProvider'
 
 function UpdateTaskFormForTaskCreator({ formData, handleChange }) {
   return (
@@ -44,13 +48,28 @@ function UpdateTaskFormForTaskCreator({ formData, handleChange }) {
       />
       <Form.Label>Task Assigned To</Form.Label>
       <Form.Control
-        required
-        type='text'
-        placeholder={formData?.tasked_to_id || ''}
-        name='tasked_to_id'
+        as='select'
         onChange={handleChange}
-        value={formData?.tasked_to_id || ''}
-      />
+        name='tasked_to_id'
+        // type='text'
+        // placeholder={formData?.tasked_to_id || ''}
+        // value={formData?.tasked_to_id || ''}
+      >
+        <option>{formData?.tasked_to_id}</option>
+        
+        emailList = {formData?.tasked_to_id}
+
+        let newEmailList = []
+
+        newEmailList = emailList.map((obj, idx) => {
+          return
+        })
+
+
+
+
+      </Form.Control>
+
       <Form.Label>Status</Form.Label>
 
       <Form.Control
