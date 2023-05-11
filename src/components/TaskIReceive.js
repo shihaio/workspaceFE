@@ -13,7 +13,7 @@ function TaskIReceive() {
     async function getData() {
       try {
         const TaskIReceives = await axiosInstance.get(
-          `api/v1/task/pic/${userId}`
+          `api/v1/task/person-in-charge/${userId}`
         )
         const taskList = TaskIReceives.data
         setTasks(taskList)
