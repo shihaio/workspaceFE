@@ -34,7 +34,9 @@ function AdminUserList() {
   return (
     <Container>
       <h1>Admin User List</h1>
-      <Row>{usersToShow}</Row>
+      <Row xs={2} lg={4}>
+        {usersToShow}
+      </Row>
     </Container>
   )
 }

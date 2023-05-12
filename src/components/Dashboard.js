@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom'
 function Dashboard() {
   const { auth } = useContext(AuthContext)
   const userId = auth?.userId
-  const [user, setUser] = useState([])
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
     async function getData() {
@@ -25,17 +25,7 @@ function Dashboard() {
 
   return (
     <Container className='mt-3'>
-      {/* <div className=''>
-        <div>
-          <Image src={user?.profileURL} fluid />
-        </div>
-        <div>
-          <p>User Email: {user?.email}</p>
-          <p>Position {user?.role}</p>
-          <p>Joined: {user?.user_created_date}</p>
-        </div>
-      </div> */}
-
+      <h2>Your Profile</h2>
       <Row>
         <Col xs={6} md={4}>
           <Image src={user?.profileURL} fluid />

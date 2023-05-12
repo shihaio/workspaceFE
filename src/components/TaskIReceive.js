@@ -4,6 +4,7 @@ import axiosInstance from '../axios'
 import AuthContext from '../context/AuthProvider'
 import Card from 'react-bootstrap/Card'
 import TaskCard from './TaskCard'
+import Container from 'react-bootstrap/Container'
 
 function TaskIReceive() {
   const { auth } = useContext(AuthContext)
@@ -39,10 +40,10 @@ function TaskIReceive() {
     })
   }
   return (
-    <div>
-      <h1>TASK ASSIGNED TO ME :</h1>
+    <Container className='mt-3'>
+      <h1>TASKS ASSIGNED TO ME :</h1>
       {tasksToShow}
-    </div>
+    </Container>
   )
 }
 

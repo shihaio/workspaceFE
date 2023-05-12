@@ -42,7 +42,7 @@ function TaskCard(props) {
 
   return (
     <>
-      <Card style={{ width: '18rem' }}>
+      <Card style={{ width: '100%' }}>
         <Card.Body onClick={handleShow}>
           <Card.Title>Task name: {task_name}</Card.Title>
           {created_by_id && (

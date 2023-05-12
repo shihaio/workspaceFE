@@ -46,6 +46,19 @@ function EditProfile() {
       return
     }
   }
+  useEffect(() => {
+    async function getData() {
+      try {
+        const response = await axiosInstance.get(`api/v1/user/read/${userId}`)
+        const userInfo = response.data
+        setFormData({
+          profileURL: userInfo?.profileURL,
+          role: userInfo?.role,
+        })
+      } catch (error) {}
+    }
+    getData()
+  }, [])
   return (
     <Container className='mt-3'>
       <h1>Edit Profile</h1>
@@ -56,7 +69,7 @@ function EditProfile() {
         placeholder={auth?.profileURL || ''}
         name='profileURL'
         onChange={handleChange}
-        value={formData?.profileURL || ''}
+        value={formData?.profileURL || auth?.profileURL}
       />
       <Form.Label>Position: </Form.Label>
       <Form.Control
@@ -65,8 +78,9 @@ function EditProfile() {
         placeholder={auth?.role || ''}
         name='role'
         onChange={handleChange}
-        value={formData?.role || ''}
+        value={formData?.role || auth?.role}
       />
+
       <Button
         className='mt-3'
         variant='outline-dark'

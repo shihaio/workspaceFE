@@ -5,6 +5,7 @@ import CreateTaskModal from './CreateTaskModal'
 import axiosInstance from '../axios'
 import AuthContext from '../context/AuthProvider'
 import TaskCard from './TaskCard'
+import { Container } from 'react-bootstrap'
 
 function TaskICreate() {
   const [show, setShow] = useState(false)
@@ -50,16 +51,14 @@ function TaskICreate() {
     })
   }
   return (
-    <>
-      <div>
-        <Button variant='primary' onClick={setShow}>
-          Create Task
-        </Button>
-        <CreateTaskModal show={show} setShow={setShow} setSeed={setSeed} />
-        <h1>TASK CREATED BY ME :</h1>
-        {tasksToShow}
-      </div>
-    </>
+    <Container className='mt-3'>
+      <Button variant='outline-dark' onClick={setShow}>
+        Create Task
+      </Button>
+      <CreateTaskModal show={show} setShow={setShow} setSeed={setSeed} />
+      <h1 className='mt-3'>TASKS CREATED BY ME :</h1>
+      {tasksToShow}
+    </Container>
   )
 }
 
