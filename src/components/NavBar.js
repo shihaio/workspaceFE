@@ -1,27 +1,27 @@
-import Container from 'react-bootstrap/Container'
-import Nav from 'react-bootstrap/Nav'
-import Navbar from 'react-bootstrap/Navbar'
-import { useEffect, useState, useContext } from 'react'
-import { useParams, useLocation, Link } from 'react-router-dom'
-import AuthContext from '../context/AuthProvider'
-import { Button } from 'react-bootstrap'
-import axiosInstance from '../axios'
-import Image from 'react-bootstrap/Image'
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { useEffect, useState, useContext } from 'react';
+import { useParams, useLocation, Link } from 'react-router-dom';
+import AuthContext from '../context/AuthProvider';
+import { Button } from 'react-bootstrap';
+import axiosInstance from '../axios';
+import Image from 'react-bootstrap/Image';
 
 function NavigationBar() {
-  const { auth } = useContext(AuthContext)
-  const [userData, setUserData] = useState(null)
-  const location = useLocation()
-  const isAuth = auth?.userId
-  const [timeFlag, setTimeFlag] = useState(1)
-  let isAdmin = false
+  const { auth } = useContext(AuthContext);
+  const [userData, setUserData] = useState(null);
+  const location = useLocation();
+  const isAuth = auth?.userId;
+  const [timeFlag, setTimeFlag] = useState(1);
+  let isAdmin = false;
   if (auth?.is_admin) {
-    isAdmin = JSON.parse(auth?.is_admin)
+    isAdmin = JSON.parse(auth?.is_admin);
   }
-  const [seed, setSeed] = useState(1)
+  const [seed, setSeed] = useState(1);
   const reset = () => {
-    setSeed(Math.random())
-  }
+    setSeed(Math.random());
+  };
 
   return (
     <Navbar
@@ -73,7 +73,7 @@ function NavigationBar() {
         </Navbar.Collapse>
       </Container>
     </Navbar>
-  )
+  );
 }
 
-export default NavigationBar
+export default NavigationBar;

@@ -1,0 +1,19 @@
+git remote remove origin
+git remote add origin https://github.com/shihaio/project4-be-deploy.git
+git config user.name shihaio
+git config credential.username shihaio
+git push origin main
+pipenv shell 
+pip3 install django
+pip3 install djangorestframework
+pip3 install django-cors-headers
+pip install --upgrade djangorestframework-simplejwt
+pip3 install psycopg2
+python3 manage.py runserver
+
+pip3 install dj-database-url psycopg2-binary 
+pip3 install whitenoise
+ pip install dj-database-url
+ pip freeze > requirements.txt 
+ pip3 list // to show all of package have
+ pip install django-environ
